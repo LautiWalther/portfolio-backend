@@ -17,8 +17,7 @@ function clean($str) {
 }
 
 function error($str) {
-    http_response_code(500);
-    return print_r(['error', $str]);
+    return print_r(json_encode(['error' => $str]));
 }
 
 ?>
