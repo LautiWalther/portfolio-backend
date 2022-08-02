@@ -5,9 +5,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(empty($_POST['user']) || empty($_POST['password'])) {
         return error('Invalid username or password');
     }
-
-    $user = $_POST['user'];
-    $password = $_POST['password'];
+    $user = clean($_POST['user']);
+    $password = clean($_POST['password']);
 
     if(!$user || !$password) {
         return error('Invalid username or password');
