@@ -11,10 +11,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $token = clean($_POST['token']);
     $post = json_decode($_POST['post']);
 
-
-    print_r($_FILES);
-    print_r($post);
-
     $query = 'SELECT id FROM users WHERE `id`='.$userID.' AND `token`="'.$token.'"';
     $result = mysqli_query($conexion, $query);
     if(mysqli_num_rows($result) < 1) return error('Invalid Token or ID');
@@ -40,17 +36,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dest_path = $uploadFileDir . $newFileName;
 
             if(move_uploaded_file($fileTmpPath, $dest_path)) {
-                print_r('Uploaded');
                 mysqli_query($conexion, 'UPDATE posts SET `text`="'.$post->text.'", `title`="'.$post->title.'", `subtitle`="'.$post->subtitle.'", `image`="'.$newFileName.'" WHERE `id`='.$postID);
+                print_r(json_encode(['status' => 'ok']));
             }
             else {
                 print_r('There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.');
             }
         }
     }else {
-        $result = mysqli_query($conexion, "UPDATE posts SET `text`='$post->text', `title`='$post->title', `subtitle`='$post->subtitle' WHERE `id`=".$postID);
-        print_r(mysqli_error($conexion));
-        print_r('Updated');
+        mysqli_query($conexion, "UPDATE posts SET `text`='$post->text', `title`='$post->title', `subtitle`='$post->subtitle' WHERE `id`=".$postID);
+        print_r(json_encode(['status' => 'ok']));
     }
 
 }
