@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-08-2022 a las 20:53:49
+-- Tiempo de generación: 09-08-2022 a las 20:31:08
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -51,6 +51,35 @@ INSERT INTO `posts` (`id`, `title`, `subtitle`, `text`, `image`, `uploaded`, `la
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `projects`
+--
+
+CREATE TABLE `projects` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `description` text NOT NULL,
+  `link` text NOT NULL,
+  `image` text NOT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `projects`
+--
+
+INSERT INTO `projects` (`id`, `title`, `description`, `link`, `image`, `deleted`) VALUES
+(1, 'LovelyBot RP', 'Discord Bot, related to the RolePlay in GTA.', 'https://lovelybot-rp.xyz', '5bbc5d9746be4b12ca96870a94f3c3a7.jpg', 0),
+(2, 'Consortium System', 'Consortium system\'s gestion, where you can upload your taxes, edit, upload news and so on for each consortium!', 'http://31.220.20.175:8080/', '', 0),
+(3, 'Iconsa web', 'A landing page for a building company.', 'http://iconsa.com.ar/', '', 0),
+(4, 'React To-Do List', 'A React project to improve my React skills', 'https://github.com/LautiWalther/react-todo-list', '', 0),
+(5, 'Discord Bot List', 'A Discord Bot List, where you can upload your bots and so on!\r\nI developed this project to improve my full-stack habilities.\r\n(It\'s still on development)', 'https://github.com/LautiWalther/BotListProject', '', 0),
+(6, 'Ecommerce', 'An online shop where you can add, delete, and edit every item!\r\nWith this project i upgraded my habilities on the APIs area with Node.JS', 'https://github.com/LautiWalther/ecommerce', '', 0),
+(7, 'Blog', 'My personal Blog', 'https://lautarowalther.xyz', '', 0),
+(8, 'React Portfolio', 'A React project to improve my React skills (still on development)', 'https://github.com/LautiWalther/React-Portfolio', '', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -70,7 +99,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `nickname`, `password`, `email`, `image`, `token`) VALUES
-(1, 'Lautaro', 'Walther', 'Lauti', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'lautarowalther@gmail.com', '', '7c8180156bb6b8584362960ede1d6d09');
+(1, 'Lautaro', 'Walther', 'Lauti', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'lautarowalther@gmail.com', '', '7cf96fd243987ae485e46d4966b11e37');
 
 --
 -- Índices para tablas volcadas
@@ -80,6 +109,12 @@ INSERT INTO `users` (`id`, `name`, `lastname`, `nickname`, `password`, `email`, 
 -- Indices de la tabla `posts`
 --
 ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `projects`
+--
+ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -97,6 +132,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `projects`
+--
+ALTER TABLE `projects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
